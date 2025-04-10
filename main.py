@@ -12,6 +12,9 @@ uzivatele = {
     'liz': 'pass123'
     }
 
+# separátor
+sep = "-" * 40
+
 # Texty k analýze
 TEXTS = [
     '''Situated about 10 miles west of Kemmerer,
@@ -46,11 +49,55 @@ TEXTS = [
 # Přihlášení uživatele
 username = input("Zadej uživatelské jméno: ")
 password = input("Zadej heslo: ")
+print(sep)
 
-# Ověření uživatele
+# Ověření uživatele a případné ukončení programu
 if uzivatele.get(username) != password:
-    print("Neplatné přihlašovací údaje. Program se ukončuje.")
+    print(f"username:{username}")
+    print(f"password:{password}")
+    print("unregistered user, terminating the program..")
     exit()
 
 # Pokud je přihlášení správné, pokračuje dál:
-print(f"\nVítej, {username}! Můžeš si vybrat text k analýze.\n")                
+print(f"Welcome to the app, {username} \nWe have {len(TEXTS)} texts to be analyzed.")
+print(sep)
+
+# Výběr textu
+vyber = input(f"Enter a number btw. 1-{len(TEXTS)} to select: ")
+print(sep)
+
+# Ověření, zda je vstup číslo a v daném rozsahu a případné ukončení programu
+if not vyber.isdigit() or not (1 <= int(vyber) <= len(TEXTS)):
+    print(f"You selected a number outside the offer! \nPlease enter a number btw. 1 and {len(TEXTS)}! \nThe program is terminated, try it again.")
+    exit()
+else:
+    vyber = int(vyber)
+    vybrany_text = TEXTS[vyber - 1]
+
+    # Rozdělí text na jednotlivá slova
+    slova = vybrany_text.split()
+
+    # Počet slov v textu a print
+    pocet_slov = len(slova)
+    print(f"There are {pocet_slov} words in the selected text.")
+
+    # Počet slov začínajících velkým písmenem a print
+    pocet_titlecase = len([slovo for slovo in slova if slovo.istitle()])
+    print(f"There are {pocet_titlecase} titlecase words.")
+
+    # Počet slov psaných velkými písmeny a print
+    pocet_upper = len([slovo for slovo in slova if slovo.isupper()])
+    print(f"There are {pocet_upper} uppercase words.")
+
+    # Počet slov psaných malými písmeny a print
+    pocet_lower = len([slovo for slovo in slova if slovo.islower()])
+    print(f"There are {pocet_lower} lowercase words.")
+
+    # Počet čísel (ne cifer) a print
+    pocet_cisel = len([slovo for slovo in slova if slovo.isdigit()])
+    print(f"There are {pocet_cisel} numeric strings.")
+
+    # Suma všech čísel (ne cifer) v textu a print
+    suma_cisel = sum(int(slovo) for slovo in slova if slovo.isdigit())
+    print(f"The sum of all the numbers {suma_cisel}.")
+    print(sep)
