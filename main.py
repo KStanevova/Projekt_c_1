@@ -100,4 +100,25 @@ else:
     # Suma všech čísel (ne cifer) v textu a print
     suma_cisel = sum(int(slovo) for slovo in slova if slovo.isdigit())
     print(f"The sum of all the numbers {suma_cisel}.")
-    print(sep)
+
+print(sep)
+print(f"{'LEN':<4}| {'OCCURENCES':<14}| {'NR.'}")
+print(sep)
+
+# Počítání délky slov
+delky = [len(slovo.strip('.,!?()[]{}"')) for slovo in slova]
+
+# Počítání výskytů jednotlivých délek slov
+delky_dict = {}
+
+for delka in delky:
+    if delka in delky_dict:
+        delky_dict[delka] += 1
+    else:
+        delky_dict[delka] = 1
+
+# Zobrazení sloupcového grafu
+nr = 1
+for delka, pocet in sorted(delky_dict.items()):
+    print(f"{delka:<4}| {'*' * pocet:<13} | {pocet}")
+      
