@@ -52,7 +52,7 @@ password = input("Zadej heslo: ")
 print(sep)
 
 # Ověření uživatele a případné ukončení programu
-if uzivatele.get(username) != password:
+if not uzivatele.get(username) == password:
     print(f"username:{username}")
     print(f"password:{password}")
     print("unregistered user, terminating the program..")
