@@ -66,9 +66,9 @@ print(sep)
 vyber = input(f"Enter a number btw. 1-{len(TEXTS)} to select: ")
 print(sep)
 
-# Ověření, zda je vstup číslo a v daném rozsahu a případné ukončení programu
+# Ověření, zda je vstup číslo v daném rozsahu a případné ukončení programu
 if not vyber.isdigit() or not (1 <= int(vyber) <= len(TEXTS)):
-    print(f"You selected a number outside the offer! \nPlease enter a number btw. 1 and {len(TEXTS)}! \nThe program is terminated, try it again.")
+    print(f"You selected a number outside the offer or letter instead of number! \nPlease enter a number btw. 1 and {len(TEXTS)}! \nThe program is terminated, try it again.")
     exit()
 else:
     vyber = int(vyber)
