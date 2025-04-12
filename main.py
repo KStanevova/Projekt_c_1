@@ -67,11 +67,21 @@ vyber = input(f"Enter a number btw. 1-{len(TEXTS)} to select: ")
 print(sep)
 
 # Ověření, zda je vstup číslo v daném rozsahu a případné ukončení programu
-if not vyber.isdigit() or not (1 <= int(vyber) <= len(TEXTS)):
-    print(f"You selected a number outside the offer or letter instead of number! \nPlease enter a number btw. 1 and {len(TEXTS)}! \nThe program is terminated, try it again.")
+if not vyber.isdigit():
+    print("You entered a letter instead of a number!")
+    print(f"Please enter a number btw. 1 and {len(TEXTS)}!")
+    print("The program is terminated, try it again.")
+    exit()
+
+# Ověření, zda je vstup čísla v daném rozsahu a případné ukončení programu
+vyber = int(vyber)
+
+if not (1 <= vyber <= len(TEXTS)):
+    print("You selected a number outside the offer!")
+    print(f"Please enter a number btw. 1 and {len(TEXTS)}!")
+    print("The program is terminated, try it again.")
     exit()
 else:
-    vyber = int(vyber)
     vybrany_text = TEXTS[vyber - 1]
 
     # Rozdělí text na jednotlivá slova
@@ -118,7 +128,6 @@ for delka in delky:
         delky_dict[delka] = 1
 
 # Zobrazení sloupcového grafu
-nr = 1
 for delka, pocet in sorted(delky_dict.items()):
     print(f"{delka:<4}| {'*' * pocet:<13} | {pocet}")
       
