@@ -52,7 +52,7 @@ password = input("Zadej heslo: ")
 print(sep)
 
 # Ověření uživatele a případné ukončení programu
-if not uzivatele.get(username) == password:
+if uzivatele.get(username) != password:
     print(f"username:{username}")
     print(f"password:{password}")
     print("unregistered user, terminating the program..")
@@ -68,18 +68,14 @@ print(sep)
 
 # Ověření, zda je vstup číslo v daném rozsahu a případné ukončení programu
 if not vyber.isdigit():
-    print("You entered a letter instead of a number!")
-    print(f"Please enter a number btw. 1 and {len(TEXTS)}!")
-    print("The program is terminated, try it again.")
+    print(f"You entered a letter instead of a number! \nPlease enter a number btw. 1 and {len(TEXTS)}! \nThe program is terminated, try it again.")
     exit()
 
 # Ověření, zda je vstup čísla v daném rozsahu a případné ukončení programu
 vyber = int(vyber)
 
 if not (1 <= vyber <= len(TEXTS)):
-    print("You selected a number outside the offer!")
-    print(f"Please enter a number btw. 1 and {len(TEXTS)}!")
-    print("The program is terminated, try it again.")
+    print(f"You selected a number outside the offer! \nPlease enter a number btw. 1 and {len(TEXTS)}! \nThe program is terminated, try it again.")
     exit()
 else:
     vybrany_text = TEXTS[vyber - 1]
